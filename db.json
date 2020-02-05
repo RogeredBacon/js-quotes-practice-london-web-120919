@@ -27,7 +27,7 @@
     },
     {
       "id": 8,
-      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts. o7",
       "author": "Winston Churchhill"
     },
     {
@@ -39,6 +39,26 @@
       "quote": "When life gives you lemons; burn lifes house down, with the lemons.",
       "author": "Cave Johnson",
       "id": 11
+    },
+    {
+      "quote": "High tech, Low life",
+      "author": "The chairleg of truth",
+      "id": 12
+    },
+    {
+      "quote": "Cheese? Yes please!",
+      "author": "Mouse; son of Mouse",
+      "id": 13
+    },
+    {
+      "quote": "Let them eat Cake? Yes Please!",
+      "author": "antoinette",
+      "id": 14
+    },
+    {
+      "quote": "Fruitarian?",
+      "author": "Steve Jobs (RIP in Peace) Sweet Prince",
+      "id": 15
     }
   ],
   "likes": [
@@ -91,6 +111,31 @@
       "quoteId": 11,
       "createdAt": 1580839121663,
       "id": 10
+    },
+    {
+      "quoteId": 12,
+      "createdAt": 1580902585900,
+      "id": 11
+    },
+    {
+      "quoteId": 1,
+      "createdAt": 1580903859289,
+      "id": 12
+    },
+    {
+      "quoteId": 2,
+      "createdAt": 1580903860505,
+      "id": 13
+    },
+    {
+      "quoteId": 2,
+      "createdAt": 1580903860884,
+      "id": 14
+    },
+    {
+      "quoteId": 1,
+      "createdAt": 1580903980675,
+      "id": 15
     }
   ]
 }

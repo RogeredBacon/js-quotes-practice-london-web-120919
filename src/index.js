@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", e => {
     const author = form.querySelector("#author").value;
     const body = { quote, author };
     fetchNewQuote(body);
+    e.target.reset();
   });
 
   document.querySelector("#sort-btn").addEventListener("click", e => {
@@ -34,8 +35,6 @@ document.addEventListener("DOMContentLoaded", e => {
   fetchAllQuotes();
 });
 
-function showEditQuote(quote) {}
-
 function newLike(quote) {
   const likeBody = {
     quoteId: quote.id,
@@ -51,6 +50,29 @@ function renderQuote(quote) {
     <blockquote class="blockquote">
       <p class="mb-0">${quote.quote}</p>
       <footer class="blockquote-footer">${quote.author}</footer>
+      <div class="hidden">
+      <form id="edit-quote-form">
+        <div class="form-group">
+          <label for="edit-quote">Edit Quote</label>
+          <input
+            type="text"
+            class="form-control"
+            id="edit-quote"
+            value="${quote.quote}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="Author">Author</label>
+          <input
+            type="text"
+            class="form-control"
+            id="author"
+            value="${quote.author}"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
       <br>
       <button class='btn-success'>Likes: <span>${quote.likes.length}</span></button>
       <button class='btn-edit'>Edit</button>
@@ -67,8 +89,17 @@ function renderQuote(quote) {
   });
 
   list.querySelector(".btn-edit").addEventListener("click", e => {
-    showEditQuote(quote);
+    e.target.parentElement.childNodes[5].classList.toggle("hidden");
   });
+
+  list.querySelector("#edit-quote-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const newQuote = list.querySelector("#edit-quote").value;
+    const author = list.querySelector("#author").value;
+    const body = { newQuote, author };
+    fetchEditQuote(quote.id, body);
+  });
+
   return list;
 }
 
@@ -78,6 +109,22 @@ function renderQuotes() {
   for (let quote of allQuotesArray) {
     quoteNode.appendChild(renderQuote(quote));
   }
+}
+
+function fetchEditQuote(id, body) {
+  fetch("http://localhost:3000/quotes/" + id, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      quote: body.newQuote,
+      author: body.author
+    })
+  })
+    .then(res => res.json())
+    .then(res => fetchAllQuotes());
 }
 
 function fetchNewQuote(body) {
